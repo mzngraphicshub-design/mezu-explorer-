@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#082b24">
+
+<title>Mezu Explorer | Explore More, Live More</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #0b4a3c;
+  --green2: #13735a;
+  --lime: #d9f36a;
+  --ink: #14231f;
+  --muted: #6c7772;
+  --paper: #f7f8f4;
+  --white: #ffffff;
+  --line: #e6eae4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Hind Siliguri", sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(1160px, calc(100% - 36px));
+  margin: auto;
+}
+
+.topline {
+  background: #082b24;
+  color: #dce9e2;
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.topline .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.topline a {
+  color: var(--lime);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #f7f8f4f2;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  background: var(--green);
+  color: var(--lime);
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 25px;
+}
+
+.brand small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.navlinks {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.navlinks a:hover {
+  color: var(--green2);
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 50px;
+  padding: 13px 20px;
+  background: var(--green);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: var(--green2);
+  transform: translateY(-2px);
+}
+
+.btn.lime {
+  background: var(--lime);
+  color: var(--green);
+}
+
+.hero {
+  padding: 55px 0 30px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 9px 14px;
+  border-radius: 30px;
+  background: #eaf2e9;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(40px, 5vw, 65px);
+  line-height: 1.12;
+  letter-spacing: -2px;
+  margin: 22px 0;
+}
+
+h1 span {
+  color: var(--green2);
+}
+
+.hero-copy {
+  max-width: 510px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--green);
+  border: 1px solid #b9c8c0;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 460px;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0 0 20px 25px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    transparent 40%,
+    rgba(0, 20, 15, 0.8)
+  );
+}
+
+.photo-label {
+  position: absolute;
+  bottom: 28px;
+  left: 25px;
+  color: white;
+}
+
+.photo-label h3 {
+  font-size: 25px;
+  margin: 8px 0;
+}
+
+.float-card {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  padding: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px #14372b20;
+}
+
+.float-card strong {
+  display: block;
+  font-size: 13px;
+}
+
+.float-card small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.price-card {
+  position: absolute;
+  bottom: 0;
+  right: -5px;
+  background: var(--lime);
+  padding: 16px 20px;
+  border-radius: 16px;
+}
+
+.price-card strong {
+  display: block;
+  font-size: 23px;
+}
+
+.search-box {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #fbfcfa;
+}
+
+.trust-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 28px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+section {
+  padding: 70px 0;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.kicker {
+  color: var(--green2);
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.section-head h2 {
+  font-size: clamp(29px, 3vw, 42px);
+  line-height: 1.2;
+  margin-top: 10px;
+}
+
+.section-head p {
+  max-width: 420px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+
+.dest-card {
+  height: 270px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  color: white;
+}
+
+.dest-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.dest-card:hover img {
+  transform: scale(1.08);
+}
+
+.dest-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 25%, #001a13d9);
+  pointer-events: none;
+}
+
+.dest-info {
+  position: absolute;
+  bottom: 20px;
+  left: 17px;
+  z-index: 2;
+}
+
+.dest-info small {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.dest-info h3 {
+  font-size: 23px;
+  margin: 5px 0;
+}
+
+.dest-info p {
+  font-size: 12px;
+}
+
+.packages {
+  background: #edf2eb;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.filter {
+  border: 1px solid #d9e1d9;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.filter.active {
+  background: var(--green);
+  color: white;
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.package-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  overflow: hidden;
+  transition: 0.25s;
+}
+
+.package-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px #14372b15;
+}
+
+.package-img {
+  height: 210px;
+  position: relative;
+}
+
+.package-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 7px 11px;
+  background: var(--lime);
+  color: var(--green);
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.package-body {
+  padding: 19px;
+}
+
+.package-meta {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.package-body h3 {
+  font-size: 19px;
+  margin: 12px 0 8px;
+}
+
+.package-body p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.package-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
+
+.price small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.price strong {
+  color: var(--green);
+  font-size: 21px;
+}
+
+.package-bottom .btn {
+  padding: 11px 13px;
+  font-size: 11px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 45px;
+  align-items: center;
+}
+
+.why-image {
+  height: 430px;
+  overflow: hidden;
+  border-radius: 27px;
+}
+
+.why-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.benefit h3 {
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.benefit p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.steps {
+  background: var(--green);
+  color: white;
+}
+
+.steps .kicker {
+  color: var(--lime);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 35px;
+}
+
+.step {
+  border-top: 1px solid #4a7567;
+  padding-top: 23px;
+}
+
+.step-no {
+  color: var(--lime);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.step h3 {
+  font-size: 20px;
+  margin: 15px 0 10px;
+}
+
+.step p {
+  color: #c5d5cc;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.review {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+.stars {
+  color: #e3a82b;
+}
+
+.review p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 15px 0;
+}
+
+.review strong {
+  font-size: 12px;
+}
+
+.cta-box {
+  background: var(--lime);
+  border-radius: 28px;
+  padding: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+.cta-box h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.cta-box p {
+  font-size: 13px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 50px;
+}
+
+.faq-list details {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-list summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.faq-list details p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
+footer {
+  background: #082b24;
+  color: white;
+  padding: 50px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 30px;
+  padding-bottom: 35px;
+}
+
+.footer-col h4 {
+  color: var(--lime);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.footer-col a,
+.footer-col p {
+  display: block;
+  color: #c1d0c7;
+  font-size: 12px;
+  margin: 12px 0;
+}
+
+.footer-brand p {
+  color: #b8cbc0;
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 18px 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid #2b5044;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #9bb3a6;
+  font-size: 11px;
+}
+
+.whatsapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #1fbf69;
+  color: white;
+  font-size: 25px;
+  z-index: 100;
+  box-shadow: 0 8px 24px #092b2035;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: #071c17bd;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-card {
+  background: white;
+  width: min(500px, 100%);
+  padding: 25px;
+  border-radius: 22px;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modal-card h2 {
+  margin-bottom: 12px;
+}
+
+.modal-card input,
+.modal-card select,
+.modal-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.modal-card label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.modal-card .btn {
+  width: 100%;
+}
+
+.modal-close {
+  float: right;
+  border: none;
+  background: #edf2eb;
+  padding: 6px 12px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 950px) {
+  .navlinks { gap: 12px; }
+  .search-box { grid-template-columns: repeat(2, 1fr); }
+  .search-box .btn { grid-column: 1 / -1; }
+  .dest-grid { grid-template-columns: repeat(2, 1fr); }
+  .package-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .topline .container { justify-content: center; }
+  .hero-grid,
+  .why-grid,
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero { padding-top: 35px; }
+  h1 { font-size: 43px; }
+  .hero-visual { min-height: 370px; }
+  .section-head { display: block; }
+  .section-head p { margin-top: 13px; }
+  .dest-card { height: 220px; }
+  .package-grid,
+  .reviews-grid,
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits { gap: 18px 12px; }
+  .cta-box { display: block; padding: 28px 22px; }
+  .cta-box .btn { margin-top: 20px; }
+  .why-image { height: 330px; }
+
+  .navlinks {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navlinks.open { display: flex; }
+  .menu-toggle {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 9px 12px;
+    background: white;
+  }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 380px) {
+  .dest-grid,
+  .search-box,
+  .benefits,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topline">
+  <div class="container">
+    <span>✦ আপনার পরবর্তী অ্যাডভেঞ্চার শুরু হোক এখান থেকেই</span>
+    <span>
+      📞 <a href="tel:+8801312040301">01312-040301</a>
+      · ঢাকা, বাংলাদেশ
+    </span>
+  </div>
+</div>
+
+<header>
+<nav class="container">
+
+<a class="brand" href="#home">
+  <span class="brand-icon">✦</span>
+  <span>
+    Mezu Explorer
+    <small>TRAVEL • DISCOVER • REPEAT</small>
+  </span>
+</a>
+
+<div class="navlinks" id="navlinks">
+  <a href="#destinations">গন্তব্য</a>
+  <a href="#packages">ট্যুর প্যাকেজ</a>
+  <a href="#why">আমাদের সম্পর্কে</a>
+  <a href="#reviews">রিভিউ</a>
+  <a href="#faq">জিজ্ঞাসা</a>
+</div>
+
+<button class="btn" onclick="location.href='#packages'">
+  ট্রিপ খুঁজুন ↗
+</button>
+
+<button class="menu-toggle" id="menuToggle">☰</button>
+
+</nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+<div class="container">
+
+<div class="hero-grid">
+
+<div>
+  <div class="eyebrow">✦ আপনার ভ্রমণ, আমাদের পরিকল্পনা</div>
+
+  <h1>
+    ঘুরে দেখুন আরও।<br>
+    <span>চিন্তা করুন কম।</span>
+  </h1>
+
+  <p class="hero-copy">
+    পাহাড়, সমুদ্র, সবুজ বন কিংবা অচেনা শহর—
+    আপনার পছন্দের ভ্রমণকে সহজ, সুন্দর ও স্মরণীয়
+    করে তুলতে আছে Mezu Explorer।
+  </p>
+
+  <div class="hero-buttons">
+    <a href="#packages" class="btn">আপনার ট্রিপ খুঁজুন ↗</a>
+    <a href="#how" class="btn btn-outline">কীভাবে কাজ করে ↓</a>
+  </div>
+
+  <p>🧭 সহজ পরিকল্পনা · 🌿 নতুন অভিজ্ঞতা · 💚 সুন্দর স্মৃতি</p>
+</div>
+
+<div class="hero-visual">
+
+  <div class="hero-photo">
+    <img
+      src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=85"
+      alt="পাহাড় ও প্রকৃতি">
+
+    <div class="photo-shade"></div>
+
+    <div class="photo-label">
+      <small>THE WORLD IS WAITING</small>
+      <h3>যেখানে মন ভালো হয়, সেখানেই চলুন।</h3>
+      <p>Discover Bangladesh & Beyond</p>
+    </div>
+  </div>
+
+  <div class="float-card">
+    <strong>🧭 সহজ ভ্রমণ পরিকল্পনা</strong>
+    <small>আপনার পছন্দ, আপনার ভ্রমণ</small>
+  </div>
+
+  <div class="price-card">
+    <small>ভ্রমণ শুরু</small>
+    <strong>৳ ১,৪৯৯+</strong>
+    <small>নির্বাচিত ট্রিপে জনপ্রতি</small>
+  </div>
+
+</div>
+</div>
+
+<form class="search-box" id="searchForm">
+
+  <div class="field">
+    <label>কোথায় যেতে চান?</label>
+    <select id="searchDestination">
+      <option value="">সব গন্তব্য</option>
+      <option value="কক্সবাজার">কক্সবাজার</option>
+      <option value="সাজেক">সাজেক ভ্যালি</option>
+      <option value="সিলেট">সিলেট</option>
+      <option value="সুন্দরবন">সুন্দরবন</option>
+      <option value="বান্দরবান">বান্দরবান</option>
+      <option value="বিদেশ">বিদেশ ভ্রমণ</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>ভ্রমণের ধরন</label>
+    <select id="searchType">
+      <option value="">সব ধরনের ট্রিপ</option>
+      <option value="beach">সমুদ্র</option>
+      <option value="mountain">পাহাড়</option>
+      <option value="nature">প্রকৃতি</option>
+      <option value="international">আন্তর্জাতিক</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>ভ্রমণের তারিখ</label>
+    <input type="date" id="searchDate">
+  </div>
+
+  <div class="field">
+    <label>ভ্রমণকারী</label>
+    <select id="searchPeople">
+      <option>১ জন</option>
+      <option selected>২ জন</option>
+      <option>৩ জন</option>
+      <option>৪ জন</option>
+      <option>৫+ জন</option>
+    </select>
+  </div>
+
+  <button class="btn" type="submit">খুঁজুন ↗</button>
+
+</form>
+
+<div class="trust-row">
+  <span>✓ যাচাইকৃত ট্রিপ প্ল্যান</span>
+  <span>♧ স্থানীয় অভিজ্ঞতা</span>
+  <span>♡ ব্যক্তিগত সাপোর্ট</span>
+  <span>↗ স্বচ্ছ বাজেট</span>
+</div>
+
+</div>
+</section>
+
+<section id="destinations">
+<div class="container">
+
+<div class="section-head">
+  <div>
+    <div class="kicker">EXPLORE BY DESTINATION</div>
+    <h2>আপনাকে ডাকছে কোনো এক সুন্দর জায়গা।</h2>
+  </div>
+
+  <p>
+    সমুদ্রের হাওয়া, পাহাড়ের মেঘ কিংবা সবুজের নির্জনতা—
+    আপনার মনের মতো গন্তব্য বেছে নিন।
+  </p>
+</div>
+
+<div class="dest-grid">
+
+<a class="dest-card" href="#packages" data-dest="কক্সবাজার">
+  <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=700&q=80" alt="সমুদ্র সৈকত">
+  <div class="dest-info">
+    <small>SEA & SUN</small>
+    <h3>কক্সবাজার</h3>
+    <p>সমুদ্র, সূর্যাস্ত ও প্রশান্তি</p>
+  </div>
+</a>
+
+<a class="dest-card" href="#packages" data-dest="সাজেক">
+  <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80" alt="পাহাড়">
+  <div class="dest-info">
+    <small>MOUNTAIN ESCAPE</small>
+    <h3>সাজেক ভ্যালি</h3>
+    <p>মেঘের দেশে হারিয়ে যান</p>
+  </div>
+</a>
+
+<a class="dest-card" href="#packages" data-dest="সিলেট">
+  <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80" alt="সবুজ বন">
+  <div class="dest-info">
+    <small>GREEN & CALM</small>
+    <h3>সিলেট</h3>
+    <p>চা-বাগান আর সবুজ প্রকৃতি</p>
+  </div>
+</a>
+
+<a class="dest-card" href="#packages" data-dest="বিদেশ">
+  <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80" alt="বিদেশ ভ্রমণ">
+  <div class="dest-info">
+    <small>BEYOND BORDERS</small>
+    <h3>বিদেশ ভ্রমণ</h3>
+    <p>নতুন দেশ, নতুন অভিজ্ঞতা</p>
+  </div>
+</a>
+
+</div>
+</div>
+</section>
+
+<section class="packages" id="packages">
+<div class="container">
+
+<div class="section-head">
+  <div>
+    <div class="kicker">HANDPICKED FOR YOU</div>
+    <h2>যে ভ্রমণের গল্প বারবার বলা যায়।</h2>
+  </div>
+
+  <p>
+    প্যাকেজগুলো নমুনা হিসেবে দেওয়া হয়েছে।
+    আপনার তারিখ ও দলের আকার অনুযায়ী চূড়ান্ত মূল্য নিশ্চিত করুন।
+  </p>
+</div>
+
+<div class="filters">
+  <button class="filter active" data-filter="all">সব প্যাকেজ</button>
+  <button class="filter" data-filter="beach">🏖️ সমুদ্র</button>
+  <button class="filter" data-filter="mountain">⛰️ পাহাড়</button>
+  <button class="filter" data-filter="nature">🌿 প্রকৃতি</button>
+  <button class="filter" data-filter="international">✈️ বিদেশ</button>
+</div>
+
+<div class="package-grid" id="packageGrid">
+
+<article class="package-card" data-type="beach" data-destination="কক্সবাজার">
+  <div class="package-img">
+    <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80" alt="কক্সবাজার">
+    <span class="tag">POPULAR PICK</span>
+  </div>
+
+  <div class="package-body">
+    <div class="package-meta">◷ ২ দিন / ১ রাত · বন্ধু ও পরিবার</div>
+    <h3>কক্সবাজার সি-সাইড এসকেপ</h3>
+    <p>সমুদ্র সৈকত, সূর্যাস্ত, স্থানীয় খাবার আর আরামদায়ক উইকেন্ড।</p>
+
+    <div class="package-bottom">
+      <div class="price">
+        <small>শুরু হচ্ছে</small>
+        <strong>৳ ৩,৯৯০</strong>
+      </div>
+      <button class="btn book-btn" data-package="কক্সবাজার সি-সাইড এসকেপ">
+        বুকিং জিজ্ঞাসা ↗
+      </button>
+    </div>
+  </div>
+</article>
+
+<article class="package-card" data-type="mountain" data-destination="সাজেক">
+  <div class="package-img">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="সাজেক">
+    <span class="tag">MOUNTAIN AIR</span>
+  </div>
+
+  <div class="package-body">
+    <div class="package-meta">◷ ৩ দিন / ২ রাত · অ্যাডভেঞ্চার</div>
+    <h3>সাজেক ক্লাউড নাইন</h3>
+    <p>মেঘ, পাহাড়ি পথ, ভোরের সূর্যোদয় আর মনভোলানো ভিউপয়েন্ট।</p>
+
+    <div class="package-bottom">
+      <div class="price">
+        <small>শুরু হচ্ছে</small>
+        <strong>৳ ৫,৪৯০</strong>
+      </div>
+      <button class="btn book-btn" data-package="সাজেক ক্লাউড নাইন">
+        বুকিং জিজ্ঞাসা ↗
+      </button>
+    </div>
+  </div>
+</article>
+
+<article class="package-card" data-type="nature" data-destination="সিলেট">
+  <div class="package-img">
+    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="সিলেট">
+    <span class="tag">NATURE LOVER</span>
+  </div>
+
+  <div class="package-body">
+    <div class="package-meta">◷ ২ দিন / ১ রাত · প্রকৃতিপ্রেমী</div>
+    <h3>সিলেট গ্রিন ট্রেইল</h3>
+    <p>চা-বাগান, সবুজ পথ, নদী আর প্রকৃতির মাঝে নির্ভার সময়।</p>
+
+    <div class="package-bottom">
+      <div class="price">
+        <small>শুরু হচ্ছে</small>
+        <strong>৳ ৩,৪৯০</strong>
+      </div>
+      <button class="btn book-btn" data-package="সিলেট গ্রিন ট্রেইল">
+        বুকিং জিজ্ঞাসা ↗
+      </button>
+    </div>
+  </div>
+</article>
+
+<article class="package-card" data-type="nature" data-destination="সুন্দরবন">
+  <div class="package-img">
+    <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=800&q=80" alt="বন">
+    <span class="tag">WILD & FREE</span>
+  </div>
+
+  <div class="package-body">
+    <div class="package-meta">◷ ৩ দিন / ২ রাত · ইকো ট্যুর</div>
+    <h3>সুন্দরবন নেচার জার্নি</h3>
+    <p>ম্যানগ্রোভ বন, নদীপথ আর বন্য প্রকৃতির অনন্য অভিজ্ঞতা।</p>
+
+    <div class="package-bottom">
+      <div class="price">
+        <small>শুরু হচ্ছে</small>
+        <strong>৳ ৬,৯৯০</strong>
+      </div>
+      <button class="btn book-btn" data-package="সুন্দরবন নেচার জার্নি">
+        বুকিং জিজ্ঞাসা ↗
+      </button>
+    </div>
+  </div>
+</article>
+
+<article class="package-card" data-type="mountain" data-destination="বান্দরবান">
+  <div class="package-img">
+    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="পাহাড়">
+    <span class="tag">ADVENTURE</span>
+  </div>
+
+  <div class="package-body">
+    <div class="package-meta">◷ ৩ দিন / ২ রাত · গ্রুপ ট্রিপ</div>
+    <h3>বান্দরবান হিল অ্যাডভেঞ্চার</h3>
+    <p>পাহাড়ি দৃশ্য, স্থানীয় সংস্কৃতি ও পরিকল্পিত গ্রুপ এক্সপ্লোরিং।</p>
+
+    <div class="package-bottom">
+      <div class="price">
+        <small>শুরু হচ্ছে</small>
+        <strong>৳ ৫,৯৯০</strong>
+      </div>
+      <button class="btn book-btn" data-package="বান্দরবান হিল অ্যাডভেঞ্চার">
+        বুকিং জিজ্ঞাসা ↗
+      </button>
+    </div>
+  </div>
+</article>
+
+<article class="package-card" data-type="international" data-destination="বিদেশ">
+  <div class="package-img">
+    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="বিদেশ ভ্রমণ">
+    <span class="tag">INTERNATIONAL</span>
+  </div>
+
+  <div class="package-body">
+    <div class="package-meta">◷ ৪ দিন / ৩ রাত · আন্তর্জাতিক</div>
+    <h3>ইন্টারন্যাশনাল গেটওয়ে</h3>
+    <p>আপনার বাজেট ও গন্তব্য অনুযায়ী বিদেশ ভ্রমণের পরিকল্পনা।</p>
+
+    <div class="package-bottom">
+      <div class="price">
+        <small>কাস্টম প্ল্যান</small>
+        <strong>কোটেশন</strong>
+      </div>
+      <button class="btn book-btn" data-package="ইন্টারন্যাশনাল গেটওয়ে">
+        প্ল্যান জিজ্ঞাসা ↗
+      </button>
+    </div>
+  </div>
+</article>
+
+</div>
+
+<p id="noResults" style="display:none;padding:25px;text-align:center">
+  এই ফিল্টারে কোনো প্যাকেজ পাওয়া যায়নি।
+</p>
+
+</div>
+</section>
+
+<section id="why">
+<div class="container why-grid">
+
+<div class="why-image">
+  <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=85" alt="ভ্রমণ">
+</div>
+
+<div>
+  <div class="kicker">THE MEZU DIFFERENCE</div>
+
+  <h2 style="font-size:38px;line-height:1.2;margin:12px 0">
+    ভালো ভ্রমণ পরিকল্পনায়,<br>
+    স্মৃতি তৈরি হয় মুহূর্তে।
+  </h2>
+
+  <p style="color:var(--muted);line-height:1.9;font-size:13px">
+    ভ্রমণ হবে আনন্দের, ঝামেলার নয়।
+    আপনার বাজেট, সঙ্গী আর পছন্দ জানালেই
+    আপনার প্রয়োজন অনুযায়ী ট্রিপ সাজাতে সাহায্য করব।
+  </p>
+
+  <div class="benefits">
+    <div class="benefit">
+      <h3>🧭 কাস্টমাইজড প্ল্যান</h3>
+      <p>দল, সময় ও বাজেট অনুযায়ী পরিকল্পনা।</p>
+    </div>
+
+    <div class="benefit">
+      <h3>🤝 ব্যক্তিগত সাপোর্ট</h3>
+      <p>বুকিংয়ের আগে প্রয়োজনীয় তথ্য জানুন।</p>
+    </div>
+
+    <div class="benefit">
+      <h3>💚 স্বচ্ছ তথ্য</h3>
+      <p>সেবা ও শর্ত আগে থেকে যাচাই করুন।</p>
+    </div>
+
+    <div class="benefit">
+      <h3>🌿 স্থানীয় অভিজ্ঞতা</h3>
+      <p>গন্তব্যকে আরও ভালোভাবে জানুন।</p>
+    </div>
+  </div>
+
+  <a href="#contact" class="btn" style="margin-top:25px">
+    আমাদের সঙ্গে কথা বলুন ↗
+  </a>
+</div>
+
+</div>
+</section>
+
+<section class="steps" id="how">
+<div class="container">
+
+<div class="kicker">THREE SIMPLE STEPS</div>
+
+<h2 style="font-size:38px;margin-top:12px">
+  তিন ধাপে আপনার ভ্রমণ
+</h2>
+
+<div class="steps-grid">
+
+<div class="step">
+  <div class="step-no">STEP 01</div>
+  <h3>গন্তব্য বেছে নিন</h3>
+  <p>প্যাকেজ দেখুন অথবা আপনার পছন্দের ট্রিপ জানান।</p>
+</div>
+
+<div class="step">
+  <div class="step-no">STEP 02</div>
+  <h3>মূল্য নিশ্চিত করুন</h3>
+  <p>তারিখ, যাত্রীসংখ্যা ও প্যাকেজের শর্ত যাচাই করুন।</p>
+</div>
+
+<div class="step">
+  <div class="step-no">STEP 03</div>
+  <h3>ব্যাগ গুছিয়ে বেরিয়ে পড়ুন</h3>
+  <p>বুকিং নিশ্চিত হলে ভ্রমণের প্রস্তুতি নিন।</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="reviews">
+<div class="container">
+
+<div class="section-head">
+  <div>
+    <div class="kicker">TRAVELER NOTES</div>
+    <h2>সেরা স্মৃতিচিহ্ন হলো গল্প।</h2>
+  </div>
+  <p>এখানে প্রকৃত কাস্টমারদের অনুমতিপ্রাপ্ত রিভিউ যোগ করুন।</p>
+</div>
+
+<div class="reviews-grid">
+
+<div class="review">
+  <div class="stars">★★★★★</div>
+  <p>আপনার ভ্রমণ অভিজ্ঞতার প্রকৃত রিভিউ এখানে যোগ করুন।</p>
+  <strong>ভ্রমণকারীর নাম</strong>
+</div>
+
+<div class="review">
+  <div class="stars">★★★★★</div>
+  <p>কাস্টমারদের মতামত ও ভ্রমণের ছবি দিয়ে এই অংশ আপডেট করুন।</p>
+  <strong>ভ্রমণকারীর নাম</strong>
+</div>
+
+<div class="review">
+  <div class="stars">★★★★★</div>
+  <p>অনুমতি নিয়ে প্রকৃত গ্রাহকের অভিজ্ঞতা প্রকাশ করুন।</p>
+  <strong>ভ্রমণকারীর নাম</strong>
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="cta-box">
+
+<div>
+  <h2>আপনার পরের প্রিয় জায়গাটি অপেক্ষা করছে।</h2>
+  <p>কোথায় যেতে চান বলুন—বাকি পরিকল্পনায় আমরা সাহায্য করব।</p>
+</div>
+
+<a class="btn" href="#contact">আমার ট্রিপ প্ল্যান করুন ↗</a>
+
+</div>
+</div>
+</section>
+
+<section id="faq">
+<div class="container faq-grid">
+
+<div>
+  <div class="kicker">GOOD TO KNOW</div>
+  <h2 style="font-size:38px;margin:12px 0">
+    যাত্রার আগে কিছু জরুরি কথা।
+  </h2>
+  <p style="color:var(--muted);line-height:1.9;font-size:13px">
+    বুকিংয়ের আগে বিস্তারিত জেনে নিন।
+    আরও কিছু জানতে চাইলে যোগাযোগ করুন।
+  </p>
+</div>
+
+<div class="faq-list">
+
+<details>
+  <summary>কীভাবে ট্যুর বুকিং করব?</summary>
+  <p>পছন্দের প্যাকেজ বেছে বুকিং ফর্ম পূরণ করুন। এরপর WhatsApp-এ বিস্তারিত পাঠাতে পারবেন।</p>
+</details>
+
+<details>
+  <summary>প্যাকেজের মূল্য কি চূড়ান্ত?</summary>
+  <p>না। এখানে দেখানো মূল্য নমুনা। বুকিংয়ের আগে চূড়ান্ত মূল্য ও সেবা নিশ্চিত করুন।</p>
+</details>
+
+<details>
+  <summary>গ্রুপ ট্যুরের ব্যবস্থা আছে?</summary>
+  <p>আপনার গন্তব্য, সম্ভাব্য তারিখ, দলের আকার ও বাজেট জানিয়ে কাস্টম ট্রিপের বিষয়ে কথা বলুন।</p>
+</details>
+
+<details>
+  <summary>বিদেশ ভ্রমণের ব্যবস্থা আছে?</summary>
+  <p>গন্তব্য, ভিসা ও অন্যান্য সেবার প্রাপ্যতা সরাসরি যাচাই করে নিন।</p>
+</details>
+
+<details>
+  <summary>বুকিং বাতিলের নিয়ম কী?</summary>
+  <p>পেমেন্টের আগে লিখিত বাতিল ও রিফান্ড নীতি জেনে নিন।</p>
+</details>
+
+</div>
+</div>
+</section>
+
+</main>
+
+<footer id="contact">
+<div class="container">
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+  <a class="brand" href="#home">
+    <span class="brand-icon">✦</span>
+    <span style="color:white">
+      Mezu Explorer
+      <small style="color:#a9c0b3">TRAVEL • DISCOVER • REPEAT</small>
+    </span>
+  </a>
+
+  <p>
+    প্রতিটি যাত্রায় নতুন গল্প, নতুন মানুষ,
+    নতুন অনুভূতি। চলুন, একসঙ্গে পৃথিবীটা
+    একটু বেশি দেখি।
+  </p>
+
+  <a class="btn lime"
+     href="https://wa.me/8801312040301"
+     target="_blank" rel="noopener">
+    WhatsApp-এ কথা বলুন ↗
+  </a>
+</div>
+
+<div class="footer-col">
+  <h4>দ্রুত লিংক</h4>
+  <a href="#destinations">গন্তব্যসমূহ</a>
+  <a href="#packages">ট্যুর প্যাকেজ</a>
+  <a href="#why">আমাদের সম্পর্কে</a>
+  <a href="#reviews">রিভিউ</a>
+  <a href="#faq">সাধারণ জিজ্ঞাসা</a>
+</div>
+
+<div class="footer-col">
+  <h4>যোগাযোগ</h4>
+  <a href="tel:+8801312040301">📞 01312-040301</a>
+  <a href="https://wa.me/8801312040301">💬 WhatsApp</a>
+  <a href="https://www.facebook.com/">📘 Facebook পেজ</a>
+  <p>📍 ঢাকা, বাংলাদেশ</p>
+  <p>✉️ ব্যবসার ইমেইল যোগ করুন</p>
+</div>
+
+<div class="footer-col">
+  <h4>ট্রাভেল আপডেট</h4>
+  <p>নতুন প্যাকেজ ও ভ্রমণ আইডিয়া জানতে যোগাযোগ করুন।</p>
+  <form id="newsletter">
+    <input type="email" placeholder="আপনার ইমেইল" required>
+    <button class="btn lime" type="submit">সাবস্ক্রাইব</button>
+  </form>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+  <span>© <span id="year"></span> Mezu Explorer</span>
+  <span>Explore More. Live More. ✦</span>
+  <a href="#home">উপরে যান ↑</a>
+</div>
+
+</div>
+</footer>
+
+<a class="whatsapp"
+   href="https://wa.me/8801312040301"
+   target="_blank"
+   rel="noopener"
+   aria-label="WhatsApp">
+  ☎
+</a>
+
+<div class="modal" id="bookingModal">
+<div class="modal-card">
+
+<button class="modal-close" id="modalClose">×</button>
+
+<div class="kicker">LET'S PLAN YOUR TRIP</div>
+<h2>আপনার ট্রিপের বিস্তারিত দিন</h2>
+
+<p style="font-size:12px;color:var(--muted);margin-bottom:18px">
+  তথ্য পূরণ করলে WhatsApp-এ বুকিং জিজ্ঞাসার মেসেজ তৈরি হবে।
+</p>
+
+<form id="bookingForm">
+
+<label for="chosenPackage">প্যাকেজ / গন্তব্য</label>
+<input id="chosenPackage" required>
+
+<label for="customerName">আপনার নাম</label>
+<input id="customerName" required placeholder="নাম লিখুন">
+
+<label for="customerPhone">মোবাইল নম্বর</label>
+<input id="customerPhone" required type="tel" placeholder="01XXXXXXXXX">
+
+<label for="bookingDate">ভ্রমণের তারিখ</label>
+<input id="bookingDate" type="date" required>
+
+<label for="bookingPeople">কতজন যাবেন?</label>
+<select id="bookingPeople">
+  <option>১ জন</option>
+  <option selected>২ জন</option>
+  <option>৩ জন</option>
+  <option>৪ জন</option>
+  <option>৫–৮ জন</option>
+  <option>৯+ জন</option>
+</select>
+
+<label for="bookingNote">অতিরিক্ত তথ্য</label>
+<textarea id="bookingNote" rows="3" placeholder="আপনার বাজেট বা পছন্দ"></textarea>
+
+<button class="btn" type="submit">
+  WhatsApp-এ জিজ্ঞাসা পাঠান ↗
+</button>
+
+</form>
+</div>
+</div>
+
+<script>
+/* নিজের WhatsApp নম্বর country code সহ লিখবে */
+const WA_NUMBER = "8801312040301";
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
+
+$("#year").textContent = new Date().getFullYear();
+
+/* Mobile Menu */
+$("#menuToggle").addEventListener("click", () => {
+  $("#navlinks").classList.toggle("open");
+});
+
+$$(".navlinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    $("#navlinks").classList.remove("open");
+  });
+});
+
+/* Package Filters and Search */
+let activeFilter = "all";
+
+function applyFilters() {
+  const destination = $("#searchDestination").value;
+  const type = $("#searchType").value;
+  let shown = 0;
+
+  $$(".package-card").forEach(card => {
+    const matchesFilter =
+      activeFilter === "all" ||
+      card.dataset.type === activeFilter;
+
+    const matchesType =
+      !type || card.dataset.type === type;
+
+    const matchesDestination =
+      !destination ||
+      card.dataset.destination === destination;
+
+    const visible =
+      matchesFilter && matchesType && matchesDestination;
+
+    card.style.display = visible ? "" : "none";
+
+    if (visible) shown++;
+  });
+
+  $("#noResults").style.display =
+    shown ? "none" : "block";
+}
+
+$$(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    $$(".filter").forEach(item =>
+      item.classList.remove("active")
+    );
+
+    button.classList.add("active");
+    activeFilter = button.dataset.filter;
+
+    applyFilters();
+  });
+});
+
+$("#searchForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  activeFilter = "all";
+
+  $$(".filter").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.filter === "all"
+    );
+  });
+
+  applyFilters();
+
+  $("#packages").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+/* Destination Click */
+$$(".dest-card").forEach(card => {
+  card.addEventListener("click", () => {
+    $("#searchDestination").value = card.dataset.dest;
+    activeFilter = "all";
+    applyFilters();
+  });
+});
+
+/* Booking Modal */
+const modal = $("#bookingModal");
+
+function openBooking(packageName) {
+  $("#chosenPackage").value = packageName;
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeBooking() {
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+$$(".book-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    openBooking(button.dataset.package);
+  });
+});
+
+$("#modalClose").addEventListener("click", closeBooking);
+
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    closeBooking();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeBooking();
+  }
+});
+
+/* WhatsApp Booking Form */
+$("#bookingForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const packageName = $("#chosenPackage").value;
+  const name = $("#customerName").value.trim();
+  const phone = $("#customerPhone").value.trim();
+  const date = $("#bookingDate").value;
+  const people = $("#bookingPeople").value;
+  const note = $("#bookingNote").value.trim();
+
+  const message = [
+    "Assalamu alaikum, Mezu Explorer!",
+    "",
+    "ট্যুর বুকিং সম্পর্কে জানতে চাই।",
+    "প্যাকেজ: " + packageName,
+    "নাম: " + name,
+    "মোবাইল: " + phone,
+    "তারিখ: " + date,
+    "যাত্রী: " + people,
+    "অতিরিক্ত তথ্য: " + (note || "নেই"),
+    "",
+    "অনুগ্রহ করে বিস্তারিত ও চূড়ান্ত মূল্য জানাবেন।"
+  ].join("\n");
+
+  const whatsappURL =
+    "https://wa.me/" + WA_NUMBER +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+
+  closeBooking();
+});
+
+/* Newsletter Demo */
+$("#newsletter").addEventListener("submit", event => {
+  event.preventDefault();
+
+  alert(
+    "ধন্যবাদ! ইমেইল সাবস্ক্রিপশন চালু করতে backend সংযুক্ত করতে হবে।"
+  );
+
+  event.target.reset();
+});
+</script>
+
+</body>
+</html>
